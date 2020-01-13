@@ -1,0 +1,7 @@
+.idea
+db/postgres/pgdata
+env
+venv
+nginx/logs
+*.pyo
+*.pyc
