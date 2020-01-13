@@ -1,0 +1,16 @@
+# Postgres config
+POSTGRES_USER=checktoporov
+POSTGRES_PASSWORD=checktoporov_rockz123
+POSTGRES_DB=forchecktoporov
+
+# Django config
+DJANGO_SECRET_KEY='ha2iu9)=^6=5le_9x1u*(ex*%%6)uj+h53a(fhytquoa+zkpk-'
+DJANGO_ALLOWED_HOSTS=127.0.0.1,localhost
+DATABASE_ENGINE=postgresql_psycopg2
+DATABASE_NAME=forchecktoporov
+DATABASE_USERNAME=checktoporov
+DATABASE_PASSWORD=checktoporov_rockz123
+DATABASE_HOST=postgres
+DATABASE_PORT=5432
+#DATABASE_OPTIONS=
+

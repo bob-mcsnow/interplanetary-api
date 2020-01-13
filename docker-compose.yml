@@ -1,0 +1,41 @@
+version: '3'
+services:
+
+  web:
+    build: ./interplanetaryAPI
+    container_name: interplanetary-api
+    env_file:
+      - env_file
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+    expose:
+      - 8080
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && gunicorn --bind :8080 --workers=1 interplanetaryAPI.wsgi"
+
+  postgres:
+    build: ./db/postgres
+    restart: unless-stopped
+    expose:
+      - "5432"
+    environment:   # will be used by the init script
+      LC_ALL: C.UTF-8
+    env_file:
+      - env_file
+    volumes:
+      - ./db/postgres/pgdata:/var/lib/postgresql/data/
+
+  nginx:
+    restart: always
+    build: ./nginx/
+    volumes:
+      - ./nginx/config:/etc/nginx/conf.d
+      - ./nginx/logs/:/app/logs
+    ports:
+      - "2222:80"
+    depends_on:
+      - web
+
+volumes:
+  pgdata:
